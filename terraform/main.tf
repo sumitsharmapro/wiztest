@@ -1,3 +1,18 @@
+# --- START OF FILE ---
+
+# The Provider block: Tells Terraform to talk to Google Cloud
+provider "google" {
+  project = "wiztest-486720" # Get this from your GCP Dashboard
+  region  = "us-central1"
+}
+
+# Your resources (VPC, VM, Bucket) follow below...
+resource "google_compute_network" "wiz_vpc" {
+  name                    = "wiz-vpc"
+  auto_create_subnetworks = false
+}
+# --- END OF FILE ---
+
 # 1. The Secure Network
 resource "google_compute_network" "secure_vpc" {
   name                    = "secure-vpc"
