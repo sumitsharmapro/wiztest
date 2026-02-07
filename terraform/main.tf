@@ -1,7 +1,22 @@
 # 1. Provider Configuration
 provider "google" {
-  project = "wiztest-486720" # <--- REPLACE WITH YOUR ACTUAL ID
+  project = "wiztest-486720"
   region  = "us-central1"
+}
+
+# 2. Automatically Enable Required Google Cloud APIs
+# This ensures the project is "ready" for the infrastructure below
+resource "google_project_service" "required_apis" {
+  for_each = toset([
+    "iam.googleapis.com",       # Required for Service Accounts
+    "compute.googleapis.com",   # Required for VMs and VPCs
+    "container.googleapis.com", # Required for GKE Clusters
+    "cloudresourcemanager.googleapis.com" # Required for IAM policy changes
+  ])
+
+  project            = "wiztest-486720"
+  service            = each.key
+  disable_on_destroy = false # Keeps APIs active if you destroy the infra
 }
 
 # 2. Secure Networking
