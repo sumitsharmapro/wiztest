@@ -50,6 +50,8 @@ resource "google_compute_router_nat" "nat" {
 resource "google_service_account" "app_identity" {
   account_id   = "wiz-app-identity"
   display_name = "Wiz Exercise Identity"
+ create_ignore_already_exists = true 
+
 }
 
 # 5. Internal Firewall (Allows GKE to talk to the DB)
