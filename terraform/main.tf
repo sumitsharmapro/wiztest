@@ -24,7 +24,7 @@ resource "google_project_service" "required_apis" {
 resource "google_compute_network" "main_vpc" {
   name                    = "wiz-tech-vpc"
   auto_create_subnetworks = false
-depends_on              = [google_project_service.required_apis]
+  depends_on              = [google_project_service.required_apis]
   lifecycle {
     ignore_changes = all
 }
