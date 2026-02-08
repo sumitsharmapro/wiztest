@@ -66,8 +66,6 @@ resource "google_artifact_registry_repository" "wiz_repo" {
   depends_on = [google_project_service.required_apis]
 }
 
-}
-
 # 5. Internal Firewall (Allows GKE to talk to the DB)
 resource "google_compute_firewall" "allow_internal" {
   name    = "allow-internal-db-traffic"
