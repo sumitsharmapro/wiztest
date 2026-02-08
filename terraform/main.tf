@@ -4,7 +4,7 @@ terraform {
     prefix = "terraform/state"
   }
 }
-
+# test
 # 1. Provider Configuration
 provider "google" {
   project = "wiztest-486720"
