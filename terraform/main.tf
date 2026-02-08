@@ -11,7 +11,7 @@ resource "google_project_service" "required_apis" {
     "iam.googleapis.com",       # Required for Service Accounts
     "compute.googleapis.com",   # Required for VMs and VPCs
     "container.googleapis.com", # Required for GKE Clusters
-    "cloudresourcemanager.googleapis.com" # Required for IAM policy changes
+    "cloudresourcemanager.googleapis.com", # Required for IAM policy changes
     "artifactregistry.googleapis.com"
   ])
 
