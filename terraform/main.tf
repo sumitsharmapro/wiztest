@@ -52,6 +52,19 @@ resource "google_service_account" "app_identity" {
   display_name = "Wiz Exercise Identity"
  create_ignore_already_exists = true 
 
+# ---------------------------------------------------------
+# 4a. ARTIFACT REGISTRY (STORAGE FOR YOUR DOCKER IMAGES)
+# ---------------------------------------------------------
+resource "google_artifact_registry_repository" "wiz_repo" {
+  location      = "us-central1"
+  repository_id = "wiz-app-repo"
+  description   = "Secure Docker repository for Wiz Exercise"
+  format        = "DOCKER"
+
+  # Secure Baseline: Ensuring the API is active before creating the registry
+  depends_on = [google_project_service.required_apis]
+}
+
 }
 
 # 5. Internal Firewall (Allows GKE to talk to the DB)
