@@ -12,6 +12,7 @@ resource "google_project_service" "required_apis" {
     "compute.googleapis.com",   # Required for VMs and VPCs
     "container.googleapis.com", # Required for GKE Clusters
     "cloudresourcemanager.googleapis.com" # Required for IAM policy changes
+    "artifactregistry.googleapis.com"
   ])
 
   project            = "wiztest-486720"
@@ -57,7 +58,6 @@ resource "google_compute_router_nat" "nat" {
 resource "google_service_account" "app_identity" {
   account_id   = "wiz-app-identity"
   display_name = "Wiz Exercise Identity"
- create_ignore_already_exists = true 
 }
 
 # ---------------------------------------------------------
