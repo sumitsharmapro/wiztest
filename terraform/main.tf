@@ -1,3 +1,10 @@
+terraform {
+  backend "gcs" {
+    bucket = "wiztest-486720-tfstate"
+    prefix = "terraform/state"
+  }
+}
+
 # 1. Provider Configuration
 provider "google" {
   project = "wiztest-486720"
