@@ -23,13 +23,19 @@ resource "google_project_service" "required_apis" {
 resource "google_compute_network" "main_vpc" {
   name                    = "wiz-tech-vpc"
   auto_create_subnetworks = false
+depends_on              = [google_project_service.required_apis]
+  lifecycle {
+    ignore_changes = all
 }
-
+}
 resource "google_compute_subnetwork" "private_subnet" {
   name          = "private-subnet"
   ip_cidr_range = "10.0.1.0/24"
   network       = google_compute_network.main_vpc.id
   private_ip_google_access = true 
+lifecycle {
+    ignore_changes = all
+  }
 }
 
 # 3. Cloud NAT (Allows Private VM to download MongoDB)
