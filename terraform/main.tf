@@ -51,6 +51,7 @@ resource "google_service_account" "app_identity" {
   account_id   = "wiz-app-identity"
   display_name = "Wiz Exercise Identity"
  create_ignore_already_exists = true 
+}
 
 # ---------------------------------------------------------
 # 4a. ARTIFACT REGISTRY (STORAGE FOR YOUR DOCKER IMAGES)
