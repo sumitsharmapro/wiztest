@@ -29,7 +29,7 @@ resource "google_project_service" "required_apis" {
 
 # 2. Secure Networking
 resource "google_compute_network" "main_vpc" {
-  name                    = "wiz-tech-vpc"
+  name                    = "wiz-tech-vpc-v2"
   auto_create_subnetworks = false
   depends_on              = [google_project_service.required_apis]
   lifecycle {
@@ -63,7 +63,7 @@ resource "google_compute_router_nat" "nat" {
 
 # 4. Identity & Permissions
 resource "google_service_account" "app_identity" {
-  account_id   = "wiz-app-identity"
+  account_id   = "wiz-app-identity-v2"
   display_name = "Wiz Exercise Identity"
 lifecycle {
     ignore_changes = all
