@@ -73,7 +73,7 @@ lifecycle {
 # ---------------------------------------------------------
 resource "google_artifact_registry_repository" "wiz_repo" {
   location      = "us-central1"
-  repository_id = "wiz-app-repo"
+  repository_id = "wiz-app-repo-v3"
   description   = "Secure Docker repository for Wiz Exercise"
   format        = "DOCKER"
 lifecycle {
