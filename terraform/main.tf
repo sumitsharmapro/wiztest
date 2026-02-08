@@ -29,7 +29,7 @@ resource "google_project_service" "required_apis" {
 
 # 2. Secure Networking
 resource "google_compute_network" "main_vpc" {
-  name                    = "wiz-tech-vpc-v2"
+  name                    = "wiz-tech-vpc-v3"
   auto_create_subnetworks = false
   depends_on              = [google_project_service.required_apis]
   lifecycle {
@@ -49,12 +49,12 @@ lifecycle {
 
 # 3. Cloud NAT (Allows Private VM to download MongoDB)
 resource "google_compute_router" "router" {
-  name    = "wiz-router"
+  name    = "wiz-router-v3"
   network = google_compute_network.main_vpc.id
 }
 
 resource "google_compute_router_nat" "nat" {
-  name                               = "wiz-nat"
+  name                               = "wiz-nat-v3"
   router                             = google_compute_router.router.name
   region                             = google_compute_router.router.region
   nat_ip_allocate_option             = "AUTO_ONLY"
