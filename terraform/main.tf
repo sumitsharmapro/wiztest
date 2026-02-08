@@ -27,6 +27,7 @@ depends_on              = [google_project_service.required_apis]
   lifecycle {
     ignore_changes = all
 }
+
 }
 resource "google_compute_subnetwork" "private_subnet" {
   name          = "private-subnet"
@@ -67,6 +68,9 @@ resource "google_artifact_registry_repository" "wiz_repo" {
   repository_id = "wiz-app-repo"
   description   = "Secure Docker repository for Wiz Exercise"
   format        = "DOCKER"
+lifecycle {
+    ignore_changes = all
+  }
 
   # Secure Baseline: Ensuring the API is active before creating the registry
   depends_on = [google_project_service.required_apis]
