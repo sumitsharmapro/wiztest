@@ -58,8 +58,10 @@ resource "google_compute_router_nat" "nat" {
 resource "google_service_account" "app_identity" {
   account_id   = "wiz-app-identity"
   display_name = "Wiz Exercise Identity"
+lifecycle {
+    ignore_changes = all
 }
-
+}
 # ---------------------------------------------------------
 # 4a. ARTIFACT REGISTRY (STORAGE FOR YOUR DOCKER IMAGES)
 # ---------------------------------------------------------
