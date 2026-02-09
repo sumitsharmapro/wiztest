@@ -16,7 +16,6 @@ jobs:
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2
         with:
-          # Double check this secret is named EXACTLY this in GitHub
           credentials_json: ${{ secrets.GCP_SA_KEY }}
 
       - name: Configure Docker
@@ -27,9 +26,24 @@ jobs:
 
       - name: Build and Push Image
         run: |
-          # We use a variable for the project to avoid typos
+          # variable for the project to avoid typos
           PROJECT_ID="wiztest-486720"
           REPO_PATH="us-central1-docker.pkg.dev/$PROJECT_ID/wiz-app-repo/my-app:v1"
           
           docker build -t $REPO_PATH ./app
           docker push $REPO_PATH
+          
+      - name: Get GKE Credentials
+        uses: google-github-actions/get-gke-credentials@v2
+        with:
+          cluster_name: wiz-k8s-cluster
+          location: us-central1-a
+
+      - name: Deploy to GKE
+        run: |
+          # This 'applies' the manifest you have in your repo automatically
+          kubectl apply -f wiz-app.yml
+          
+          # This 'rolls out' the new image to ensure Kubernetes restarts the pods
+          kubectl rollout restart deployment/wiz-app
+          
