@@ -41,11 +41,7 @@ jobs:
 
       - name: Deploy to GKE
         run: |
-
-          ls ./app
-          # List files to verify location (debugging)
-          
-          kubectl apply -f app/wiz-app.yml
+          kubectl apply -f wiz-app.yml
           # This 'applies' the manifest you have in your repo automatically
           
           kubectl rollout restart deployment/wiz-app
