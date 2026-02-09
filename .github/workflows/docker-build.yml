@@ -42,7 +42,7 @@ jobs:
       - name: Deploy to GKE
         run: |
 
-          ls -R
+          ls ./app
           # List files to verify location (debugging)
           
           kubectl apply -f app/wiz-app.yml
