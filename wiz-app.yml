@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: wiz-app
-        image: us-central1-docker.pkg.dev/wiztest-486720/wiz-app-repo-v3/my-app:v1
+        image: us-central1-docker.pkg.dev/wiztest-486720/wiz-app-repo/my-app:v1
         ports:
         - containerPort: 8080
 ---
