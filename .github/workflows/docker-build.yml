@@ -45,7 +45,7 @@ jobs:
           ls -R
           # List files to verify location (debugging)
           
-          kubectl apply -f wiz-app.yml
+          kubectl apply -f app/wiz-app.yml
           # This 'applies' the manifest you have in your repo automatically
           
           kubectl rollout restart deployment/wiz-app
