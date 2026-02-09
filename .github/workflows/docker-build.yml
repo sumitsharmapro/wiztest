@@ -29,7 +29,7 @@ jobs:
         run: |
           # variable for the project to avoid typos
           PROJECT_ID="wiztest-486720"
-          REPO_PATH="us-central1-docker.pkg.dev/$PROJECT_ID/wiz-app-repo-v3/my-app:v1"
+          REPO_PATH="us-central1-docker.pkg.dev/$PROJECT_ID/wiz-app-repo/my-app:v1"
           
           docker build -t $REPO_PATH ./app
           docker push $REPO_PATH
