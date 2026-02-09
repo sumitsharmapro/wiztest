@@ -4,7 +4,8 @@ on:
   push:
     branches: [ main ]
     paths:
-      - 'app/**'
+      - 'app/**'      # Trigger if code changes
+      - 'wiz-app.yml' # Trigger if the manifest changes
 
 jobs:
   build-and-push:
