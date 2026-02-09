@@ -155,3 +155,17 @@ resource "google_container_node_pool" "primary_nodes" {
     oauth_scopes    = ["https://www.googleapis.com/auth/cloud-platform"]
   }
 }
+
+# --- IAM Permissions ---
+
+# 1. Fetch project data so Terraform can find your unique Project Number
+data "google_project" "project" {
+  project_id = "wiztest-486720"
+}
+
+# 2. Grant the GKE Nodes permission to pull images from Artifact Registry
+resource "google_project_iam_member" "gke_artifact_registry_reader" {
+  project = "wiztest-486720"
+  role    = "roles/artifactregistry.reader"
+  member  = "serviceAccount:${data.google_project.project.number}-compute@developer.gserviceaccount.com"
+}
