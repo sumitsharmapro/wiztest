@@ -3,14 +3,14 @@ name: "Wiz Infrastructure Deploy"
 on:
   push:
     branches:
-      - main  # This runs every time you push code to your main branch
+      - main  # runs everytime code is pushed to main branch
 
 jobs:
   terraform:
     name: "Terraform"
     runs-on: ubuntu-latest
     env:
-      GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }} # Uses the secret you saved earlier
+      GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
 
     steps:
       - name: Checkout Code
