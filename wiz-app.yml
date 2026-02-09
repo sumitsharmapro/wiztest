@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wiz-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: wiz-app
+  template:
+    metadata:
+      labels:
+        app: wiz-app
+    spec:
+      containers:
+      - name: wiz-app
+        image: us-central1-docker.pkg.dev/wiztest-486720/wiz-app-repo-v3/my-app:v1
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wiz-app-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: wiz-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
