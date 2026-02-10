@@ -169,3 +169,13 @@ resource "google_project_iam_member" "gke_artifact_registry_reader" {
   role    = "roles/artifactregistry.reader"
   member  = "serviceAccount:${data.google_project.project.number}-compute@developer.gserviceaccount.com"
 }
+
+# --- ACCESS CONTROL ---
+
+# This gives the specific service account used by your GKE nodes 
+# the authority to pull images from your Artifact Registry.
+resource "google_project_iam_member" "gke_node_registry_access" {
+  project = "wiztest-486720"
+  role    = "roles/artifactregistry.reader"
+  member  = "serviceAccount:wiz-app-identity-v2@wiztest-486720.iam.gserviceaccount.com"
+}
