@@ -179,3 +179,19 @@ resource "google_project_iam_member" "gke_node_registry_access" {
   role    = "roles/artifactregistry.reader"
   member  = "serviceAccount:wiz-app-identity-v2@wiztest-486720.iam.gserviceaccount.com"
 }
+
+
+# THE MASTER KEY: Grants your GKE nodes permission to pull ANY image in the project
+resource "google_project_iam_member" "final_fix_registry_viewer" {
+  project = "wiztest-486720"
+  role    = "roles/artifactregistry.reader"
+  member  = "serviceAccount:wiz-app-identity-v2@wiztest-486720.iam.gserviceaccount.com"
+}
+
+# Ensure the nodes have the correct "Scope" to use that identity
+# (This is a safety net for the 403 error you saw)
+resource "google_project_iam_member" "node_service_account_user" {
+  project = "wiztest-486720"
+  role    = "roles/iam.serviceAccountUser"
+  member  = "serviceAccount:wiz-app-identity-v2@wiztest-486720.iam.gserviceaccount.com"
+}
